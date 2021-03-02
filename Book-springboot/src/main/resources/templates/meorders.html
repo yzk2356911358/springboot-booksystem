@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+table.imagetable {
+	font-family: verdana, arial, sans-serif;
+	font-size: 20px;
+	color: #333333;
+	border-width: 1px;
+	border-collapse: collapse;
+	position: absolute;
+	left: 250px;
+}
+
+table.imagetable th {
+	background: #87CEFA url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 30px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+table.imagetable td {
+	background: #F0F8FF url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 20px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+p {
+	margin: 2px;
+}
+
+.leftdiv {
+	width: 150px;
+	height: 900px;
+	position: absolute;
+	top: 257px;
+	text-align: center;
+}
+
+p {
+	font-size: 20px;
+}
+
+a {
+	font-size: 20px;
+	margin: 0 auto;
+	text-decoration: none;
+}
+</style>
+</head>
+<body>
+	<iframe src="head.html" frameborder="0" width="100%" height="230px"
+		border="0" scrolling="no"></iframe>
+	<div class="leftdiv">
+		<p style="color: cornflowerblue; font-size: 26px;">图书分类</p>
+		<div th:each="temp : ${classifylist}">
+			<a th:href="@{/findbookbyclassify(classify=${temp.name})}"
+				th:text="${temp.name}"></a>
+		</div>
+
+	</div>
+	<!-- Table goes in the document BODY -->
+	<table class="imagetable">
+		<tr>
+			<th>编号</th>
+			<th>借阅人</th>
+			<th>借阅书籍</th>
+			<th>借阅时间</th>
+			<th>归还时间</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="temp : ${orders}">
+			<td th:text="${temp.id}"></td>
+			<td th:text="${temp.uname}"></td>
+			<td th:text="${temp.bname}"></td>
+			<td th:text="${temp.btime}"></td>
+			<td th:text="${temp.ftime}"></td>
+			<td th:text="${temp.state}"></td>
+			<td th:if="${temp.state eq '未归还'}"><a
+				th:href="@{/useruporder(id=${temp.id})}">归还</a></td>
+			<td th:if="${temp.state eq '已归还'}"><a
+				th:href="@{/userdelorder(id=${temp.id})}">删除</a></td>
+		</tr>
+
+	</table>
+
+
+</body>
+</html>

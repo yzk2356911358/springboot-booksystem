@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+table.imagetable {
+	font-family: verdana, arial, sans-serif;
+	font-size: 20px;
+	color: #333333;
+	border-width: 1px;
+	border-collapse: collapse;
+	position: absolute;
+	left: 440px;
+}
+
+table.imagetable th {
+	background: #87CEFA url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 30px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+table.imagetable td {
+	background: #F0F8FF url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 20px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+p {
+	margin: 2px;
+}
+
+.leftdiv {
+	width: 150px;
+	height: 900px;
+	position: absolute;
+	top: 257px;
+	text-align: center;
+}
+
+p {
+	font-size: 20px;
+}
+
+a {
+	font-size: 20px;
+	margin: 0 auto;
+	text-decoration: none;
+}
+</style>
+</head>
+<body>
+	<iframe src="head.html" frameborder="0" width="100%" height="230px"
+		border="0" scrolling="no"></iframe>
+	<div class="leftdiv">
+		<p style="color: cornflowerblue; font-size: 26px;">图书分类</p>
+		<div th:each="user : ${classifylist}">
+			<a th:href="@{/findbookbyclassify(classify=${user.name})}"
+				th:text="${user.name}"></a>
+		</div>
+
+	</div>
+	<!-- Table goes in the document BODY -->
+	<table class="imagetable">
+		<tr>
+			<th>用户名</th>
+			<th>姓名</th>
+			<th>密码</th>
+			<th>性别</th>
+			<th>年龄</th>
+		</tr>
+		<tr >
+			<td th:text="${user.username}"></td>
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.password}"></td>
+			<td th:text="${user.gender}"></td>
+			<td th:text="${user.age}"></td>
+		</tr>
+
+	</table>
+
+
+</body>
+</html>

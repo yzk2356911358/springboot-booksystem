@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+body {
+	background-image: url(img/loginbg.jpg);
+	width: 90%;
+	text-align: center;
+}
+
+div {
+	position: absolute;
+	left: 900px;
+	top: 150px;
+	width: 500px;
+	height: 500px;
+	background-color: aliceblue;
+}
+
+p {
+	font-size: 30px;
+	text-align: center;
+}
+
+h2 {
+	display: inline;
+}
+
+.login {
+	position: absolute;
+	
+	left: 150px;
+}
+</style>
+</head>
+<body>
+	<div>
+		<p class="">注册</p>
+		<form action="reg" method="post">
+			<h2>用户名：</h2>
+			<input name="username" type="text"
+				style="width: 250px; height: 27px;" /><br />
+			<h2>密&nbsp;&nbsp;&nbsp;码：</h2>
+			<input name="password" type="password"
+				style="width: 250px; height: 27px;" /> <br />
+			<h2>姓&nbsp;&nbsp;&nbsp;名：</h2>
+			<input name="name" type="text" style="width: 250px; height: 27px;" />
+			<br />
+			<h2>年&nbsp;&nbsp;&nbsp;龄：</h2>
+			<input name="age" type="number" style="width: 250px; height: 27px;" /><br />
+
+			<h2>性&nbsp;&nbsp;&nbsp;别：</h2>
+			<select name="gender"
+				style="font-size: 20px; width: 250px; height: 27px;">
+				<option selected="selected" value="男">男</option>
+				<option value="女">女</option>
+			</select> <br /> <br />
+			<button type="submit" class="login"
+				style="width: 200px; height: 40px;">注册</button>
+				<br>
+				<br>
+				<a href="./login.html">登录</a>
+			<p th:text="${error}" style="color: red; font-size: 10p;">
+		</form>
+	</div>
+</body>
+</html>

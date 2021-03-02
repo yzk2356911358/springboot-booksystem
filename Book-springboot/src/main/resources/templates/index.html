@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+.books {
+	width: 480px;
+	float: left;
+	position: relative;
+	left: 230px;
+	float: left;
+}
+
+p {
+	margin: 2px;
+}
+
+.leftdiv {
+	width: 150px;
+	height: 900px;
+	position: absolute;
+	top: 257px;
+	text-align: center;
+}
+
+p {
+	font-size: 20px;
+}
+
+a {
+	text-decoration: none;
+	font-size: 20px;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+	<iframe src="head.html" frameborder="0" width="100%" height="230px"
+		border="0" scrolling="no"></iframe>
+	<div class="leftdiv">
+		<p style="color: cornflowerblue; font-size: 26px;">图书分类</p>
+		<div th:each="temp : ${classifylist}">
+			<a th:href="@{/findbookbyclassify(classify=${temp.name})}"
+				th:text="${temp.name}"></a>
+		</div>
+		
+	</div>
+	<p th:if="${message eq 'success'}">
+	<script type="text/javascript">
+		alert("借阅成功！");
+	</script>
+	</p>
+	<div class="books" th:each="temp : ${list}">
+		<img th:src="'img/'+${temp.img}" style="width: 300px; height: 300px;" />
+		<br>
+		<p th:text="'书名：' +${temp.name}"></p>
+		<p th:text="'价格：' +${temp.price}+'/天'"></p>
+		<p th:text="'分类：' +${temp.classify}"></p>
+		<a th:href="@{/addorder(id=${temp.id})}">借阅</a>
+	</div>
+
+
+</body>
+</html>
